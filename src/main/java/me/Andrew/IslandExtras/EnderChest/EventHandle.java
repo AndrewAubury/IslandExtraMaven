@@ -8,7 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.Hopper;
-import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,9 +25,6 @@ import com.wasteofplastic.askyblock.Island;
 import com.wasteofplastic.askyblock.events.ChallengeCompleteEvent;
 import com.wasteofplastic.askyblock.events.IslandEnterEvent;
 
-import net.minecraft.server.v1_11_R1.PacketPlayOutWorldBorder;
-import net.minecraft.server.v1_11_R1.PacketPlayOutWorldBorder.EnumWorldBorderAction;
-import net.minecraft.server.v1_11_R1.WorldBorder;
 
 public class EventHandle implements Listener {
 
