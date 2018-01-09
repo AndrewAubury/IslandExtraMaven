@@ -42,7 +42,7 @@ public class EventHandle implements Listener {
 		}
 	}
 
-	// @EventHandler
+	@EventHandler
 	public void onInventoryPickupItem(InventoryPickupItemEvent e) {
 		if (e.getInventory().getType() == InventoryType.HOPPER) {
 			Main.getInst().getServer().broadcastMessage("Moving Item to hopper!");
@@ -62,7 +62,7 @@ public class EventHandle implements Listener {
 		}
 	}
 
-	// @EventHandler (DISABLED!)
+	@EventHandler
 	public void onInventoryMoveItem(InventoryMoveItemEvent e) {
 		if (e.getDestination().getType() == InventoryType.HOPPER) {
 			Main.getInst().getServer().broadcastMessage("Moving Item to hopper!");
@@ -76,7 +76,6 @@ public class EventHandle implements Listener {
 				Main.getInst().getServer().broadcastMessage("Will attempt to put it in the ender inv!");
 				Inventory einv = IslandInventoryStorage.getInstance().getInventory(owner);
 				einv.addItem(e.getItem());
-				
 				e.setCancelled(true);
 				e.getInitiator().remove(e.getItem());
 				e.getInitiator().removeItem(e.getItem());
