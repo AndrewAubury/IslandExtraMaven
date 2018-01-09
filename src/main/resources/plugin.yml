@@ -1,0 +1,12 @@
+name: IslandExtras
+main: me.Andrew.IslandExtras.Main
+version: 1
+author: AndrewAubury
+depend: [ProtocolLib,ASkyBlock]
+commands:
+   border:
+     description: Show or hide the island border
+     aliases: [border]
+   islandenderchest:
+     description: Access your team enderchest
+     aliases: [iec]
