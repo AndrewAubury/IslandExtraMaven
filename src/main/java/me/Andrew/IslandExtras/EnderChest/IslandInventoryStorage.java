@@ -25,10 +25,11 @@ import com.wasteofplastic.askyblock.Island;
 
 public class IslandInventoryStorage {
 	private static IslandInventoryStorage me;
-	private HashMap<UUID, Inventory> data = new HashMap<UUID, Inventory>();
+	private HashMap<UUID, Inventory> data;
 
 	public IslandInventoryStorage() {
 		me = this;
+		data = new HashMap<UUID, Inventory>();
 	}
 
 	public static IslandInventoryStorage getInstance() {
@@ -107,33 +108,14 @@ public class IslandInventoryStorage {
 	}
 
 	public Inventory getInventory(Player p) {
-		Inventory ii = fromStorage(p);
-		if (ii != null) {
-			return (ii);
-		}
-
-		Main ma = Main.getInst();
-		Inventory iinv = ma.getServer().createInventory(null, 54, " Island Ender Chest");
-
-		ItemStack[] items = getFromFile(p);
-		if (items != null) {
-			for (ItemStack item : items) {
-				if(item != null){
-					iinv.addItem(item);
-				}
-				
-			}
-		}
-
-		storeInv(p, iinv);
-		return iinv;
-	}
+        return getInventory(p.getUniqueId());
+    }
 
 	public Inventory getInventory(UUID uuid) {
 		Inventory ii = fromStorage(uuid);
 		if (ii != null) {
 			return (ii);
-		}
+		}else{
 
 		Main ma = Main.getInst();
 		Inventory iinv = ma.getServer().createInventory(null, 54, " Island Ender Chest");
@@ -141,15 +123,16 @@ public class IslandInventoryStorage {
 		ItemStack[] items = getFromFile(uuid);
 		if (items != null) {
 			for (ItemStack item : items) {
-				if(item != null){
-					iinv.addItem(item);
-				}
-				
+                if (item != null) {
+                    iinv.addItem(item);
+                }
+            }
 			}
-		}
+
 
 		storeInv(uuid, iinv);
 		return iinv;
+	    }
 	}
 	public void saveToConfig() {
 		Main ma = Main.getInst();
