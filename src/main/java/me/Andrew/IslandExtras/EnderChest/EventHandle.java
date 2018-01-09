@@ -76,7 +76,10 @@ public class EventHandle implements Listener {
 				Main.getInst().getServer().broadcastMessage("Will attempt to put it in the ender inv!");
 				Inventory einv = IslandInventoryStorage.getInstance().getInventory(owner);
 				einv.addItem(e.getItem());
-				e.setCancelled(true);
+				if(e.getSource().getType() != InventoryType.CHEST){
+					e.setCancelled(true);
+				}
+
 				e.getInitiator().remove(e.getItem());
 				e.getInitiator().removeItem(e.getItem());
 				e.getSource().removeItem(e.getItem());
