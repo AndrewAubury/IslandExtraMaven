@@ -47,6 +47,7 @@ public class Functions {
         }
 
     }
+
     public void sendIslandBorder(final Player p, final long timeToStay) {
         Main.getInst().getServer().getScheduler().scheduleSyncDelayedTask(Main.getInst(),new Runnable() {
             public void run() {
@@ -78,12 +79,31 @@ public class Functions {
                 borderSize = Math.round(borderSize);
 
                 ProtocolManager pm = Main.getInst().getProtocolManager();
+//                PacketContainer worldBorder = pm.createPacket(PacketType.Play.Server.WORLD_BORDER);
+//                worldBorder.getIntegers().write(0, 0);
+//                worldBorder.getDoubles().write(0, borderSize);
+//                worldBorder.getIntegers().write(0, 2);
+//                worldBorder.getDoubles().write(0, is.getCenter().getX());
+//                worldBorder.getDoubles().write(1, is.getCenter().getZ());
+//                try {
+//                    pm.sendServerPacket(p, worldBorder);
+//                } catch (InvocationTargetException e) {
+//                    throw new RuntimeException("Cannot send packet " + worldBorder, e);
+//                }
+
+
                 PacketContainer worldBorder = pm.createPacket(PacketType.Play.Server.WORLD_BORDER);
-                worldBorder.getIntegers().write(0, 0);
-                worldBorder.getDoubles().write(0, borderSize);
+
                 worldBorder.getIntegers().write(0, 2);
-                worldBorder.getDoubles().write(0, is.getCenter().getX());
-                worldBorder.getDoubles().write(1, is.getCenter().getZ());
+                worldBorder.getDoubles().write(0, p.getLocation().getX());
+                worldBorder.getDoubles().write(1, p.getLocation().getZ());
+
+                worldBorder.getIntegers().write(0, 0);
+                worldBorder.getDoubles().write(0, 5D);
+
+                worldBorder.getIntegers().write(0, 5);
+                worldBorder.getIntegers().write(1, 1);
+
                 try {
                     pm.sendServerPacket(p, worldBorder);
                 } catch (InvocationTargetException e) {
