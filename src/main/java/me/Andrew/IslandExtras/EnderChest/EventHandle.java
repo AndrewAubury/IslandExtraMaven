@@ -80,12 +80,15 @@ public class EventHandle implements Listener {
 					//e.setCancelled(true);
 				}
 
+                e.getInitiator().clear();
+				e.getSource().clear();
 				e.getInitiator().remove(e.getItem());
 				e.getInitiator().removeItem(e.getItem());
 				e.getSource().removeItem(e.getItem());
 				e.getSource().remove(e.getItem());
 				e.getDestination().removeItem(e.getItem());
 				e.getDestination().remove(e.getItem());
+
 
 			}
 		}
