@@ -29,16 +29,11 @@ public class Functions {
     public void removeBorder(Player p){
         ProtocolManager pm = Main.getInst().getProtocolManager();
         PacketContainer worldBorder = pm.createPacket(PacketType.Play.Server.WORLD_BORDER);
-
-        worldBorder.getIntegers().write(0, 3);
+        worldBorder.getIntegers().write(0, 0);
+        worldBorder.getDoubles().write(0, 5000000.00);
+        worldBorder.getIntegers().write(0, 2);
         worldBorder.getDoubles().write(0, p.getLocation().getX());
-        worldBorder.getDoubles().write(1, p.getLocation().getY());
-        worldBorder.getDoubles().write(2, 4999999.00);
-        worldBorder.getDoubles().write(3, 5000000.00);
-        worldBorder.getLongs().write(0, 20l);
-        worldBorder.getIntegers().write(1, 10);
-        worldBorder.getIntegers().write(2, 10);
-        worldBorder.getIntegers().write(3, 10);
+        worldBorder.getDoubles().write(1, p.getLocation().getZ());
 
         try {
             pm.sendServerPacket(p, worldBorder);
@@ -63,8 +58,7 @@ public class Functions {
                     return;
                 }
                 api.getChallengeStatus(is.getOwner());
-                ProtocolManager pm = Main.getInst().getProtocolManager();
-                PacketContainer worldBorder = pm.createPacket(PacketType.Play.Server.WORLD_BORDER);
+
 
                 double min = 50.0;
                 double max = is.getProtectionSize();
@@ -83,15 +77,13 @@ public class Functions {
 
                 borderSize = Math.round(borderSize);
 
-                worldBorder.getIntegers().write(0, 3);
+                ProtocolManager pm = Main.getInst().getProtocolManager();
+                PacketContainer worldBorder = pm.createPacket(PacketType.Play.Server.WORLD_BORDER);
+                worldBorder.getIntegers().write(0, 0);
+                worldBorder.getDoubles().write(0, borderSize);
+                worldBorder.getIntegers().write(0, 2);
                 worldBorder.getDoubles().write(0, is.getCenter().getX());
-                worldBorder.getDoubles().write(1, is.getCenter().getY());
-                worldBorder.getDoubles().write(2, borderSize-1.00);
-                worldBorder.getDoubles().write(3, borderSize);
-                worldBorder.getLongs().write(0, 20l);
-                worldBorder.getIntegers().write(1, 0);
-                worldBorder.getIntegers().write(2, 0);
-                worldBorder.getIntegers().write(3, 0);
+                worldBorder.getDoubles().write(1, is.getCenter().getZ());
                 try {
                     pm.sendServerPacket(p, worldBorder);
                 } catch (InvocationTargetException e) {
